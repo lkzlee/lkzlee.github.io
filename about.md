@@ -1,7 +1,7 @@
 ---
 layout: page
-##title: About
-
+title: About
+---
 比较认可的一句话:
 
 	理想与现实总是不统一的，理想的实现总要服从于现实。
