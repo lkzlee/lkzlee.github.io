@@ -1,29 +1,39 @@
-# Dependencies
-markdown:         kramdown
+# Site settings
+title: 流水殇-读书强身计划
+email: lkzleexj@163.com
+description: > # this means to ignore newlines until "baseurl:"
+  用对方法才有效率，做对事情才有效果
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://lkzlee.github.com" # the base hostname & protocol for your site
+
+
+# Sidebar filter
+# Choose 'tag' or 'category' as filter in sidebar.
+filter: 'tag'
+
+
+# Social account
+# twitter:  username
+# weibo:    ID
+# github:   username
+# codepen:  username
+# dribbble: username
+
+
+# Comment
+# disqus_shortname: discussion_shortname
+
+
+# Google Analytics
+# google_analytics: tracking_ID
+
+
+# Build settings
+markdown: kramdown
 highlighter:      rouge
 kramdown:
   syntax_highlighter: rouge
-# Permalinks
-permalink:        /:year-:month-:day-:title
-
-# Setup
-title:            '流水殇'
-tagline:          '读书计划'
-description:      '用对方法才有效率，做对事情才有效果'
-url:              https://lkzlee.github.io
-baseurl:          /
-encoding:		  utf-8
-
-author:
-  name:           'lkzlee路飞'
-  url:            https://lkzlee.github.io
-
-paginate:         5
-
-# Custom vars
-version:          2.1.0
-
-github:
-  repo:           https://github.com/lkzlee
-
-gems: [jekyll-paginate]
+sass:
+  style: compressed
+gems:
+  - jekyll-sitemap
