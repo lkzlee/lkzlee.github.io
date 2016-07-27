@@ -12,21 +12,23 @@ title: git 使用配置（windows版本）
 ![示例图片](/article_images/git_bash_here.png)
 
 输入以下命令：
-```
-    git config --global user.name [username]
+~~~shell	
+	git config --global user.name [username]
 	git config --global user.email [email]
 	使用git config --list查看已设配置
-```
+~~~
+
 并且可以配置git免密码登录，命令如下：
-```
+~~~shell
 	git config --global credential.helper store
-```
+~~~
 此时将会在用户~目录下创建一个.gitconfig文件，内容如下：
-```
+
+~~~config
 	[user]
         name = xxx
         email = xxx@gmail.com
 	[credential]
         helper = store
-```
+~~~
 此后输入一次密码后，下次可以直接push、pull代码到本地，使用很方便。
