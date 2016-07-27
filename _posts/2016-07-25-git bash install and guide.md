@@ -12,6 +12,7 @@ title: git 使用配置（windows版本）
 ![示例图片](/article_images/git_bash_here.png)
 
 输入以下命令：
+
 ~~~shell	
 	git config --global user.name [username]
 	git config --global user.email [email]
@@ -19,6 +20,7 @@ title: git 使用配置（windows版本）
 ~~~
 
 并且可以配置git免密码登录，命令如下：
+
 ~~~shell
 	git config --global credential.helper store
 ~~~
