@@ -19,5 +19,6 @@ description:      "借用别人的主题还不错"
 
 
 style: 			  /css/style.css
-blogName: 		  静水流深，
+style_highlighter:	/css/highlighter.css
+blogName: 		  静水流深
 blogDesc: 		  总结，积累，分享，成长.
