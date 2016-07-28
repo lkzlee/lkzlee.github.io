@@ -12,7 +12,7 @@ tags: 技术
 安装工具tortoisegit，地址:[https://tortoisegit.org/](https://tortoisegit.org/ "下载地址")
 
 安装完成两个工具后，在任意位置右键git bash here，如图：
-![示例图片](/article_images/2016/07/25/git_bash_here.png)
+![示例图片](/article_images/2016/git_bash_here.png)
 
 输入以下命令：
 
