@@ -17,7 +17,7 @@ follow:
 #    twitter:      http://www.twitter.com/piznlin
 description:      "借用别人的主题还不错"
 
-
+baseurl: "" 
 style: 			  /css/style.css
 style_highlighter:	/css/highlighter.css
 blogName: 		  静水流深
