@@ -1,22 +1,23 @@
 markdown:         rdiscount
+highlighter: rouge # 高亮显示 取值有 'rouge', 'pygments'
 pygments:         true
 paginate:         4
 
-title:            Black Cube Theme
-url:              http://www.pizn.me
+title:            流水殇-读书强身计划
+url:              http://www.lkzlee.github.com
 feed:             /atom.xml
 author:
-    name:         PIZn
-    email:        pizner@gmail.com
-description:      "PIZn's blog theme -- Black Cube Theme 1.0 "
+    name:         lkzlee
+    email:        lkzlee@gmail.com
+description:      "用对方法才有效率，做对事情才有效果"
 
-about: 			  "I am PIZn.I love all kinds of design, attention to the Internet dynamic, dedicated web front development, learn UI and UED."
+about: 			  "爱技术，爱分享，爱生活"
 follow:
-    github:       https://github.com/pizn
-    twitter:      http://www.twitter.com/piznlin
-description:      "PIZn's blog theme -- Black Cube Theme 1.0 "
+    github:       https://github.com/lkzlee
+#    twitter:      http://www.twitter.com/piznlin
+description:      "借用别人的主题还不错"
 
 
 style: 			  /css/style.css
-blogName: 		  PIZn
-blogDesc: 		  Phosphorus,Iodine & Zinc.
+blogName: 		  静水流深，
+blogDesc: 		  总结，积累，分享，成长.
