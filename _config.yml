@@ -1,7 +1,6 @@
-markdown:         rdiscount
+markdown:         kramdown
 highlighter: rouge # 高亮显示 取值有 'rouge', 'pygments'
-pygments:         true
-paginate:         4
+paginate:         5
 
 title:            流水殇-读书强身计划
 url:              http://www.lkzlee.github.com
