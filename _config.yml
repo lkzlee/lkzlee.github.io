@@ -1,4 +1,12 @@
 markdown:         kramdown
+
+toc_levels: 2..3
+# 多说评论系统
+comments :
+    provider : duoshuo
+    duoshuo : lkzlee
+    short_name : lkzlee
+
 highlighter: rouge # 高亮显示 取值有 'rouge', 'pygments'
 paginate:         5
 
@@ -21,3 +29,5 @@ style: 			  /css/style.css
 style_highlighter:	/css/highlighter.css
 blogName: 		  静水流深
 blogDesc: 		  总结，积累，分享，成长.
+
+gems: [jekyll-paginate]
