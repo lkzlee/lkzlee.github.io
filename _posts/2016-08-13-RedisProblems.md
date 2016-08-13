@@ -68,6 +68,7 @@ public class RedisSubListener extends JedisPubSub
 ~~~
 我们内部对于获取Jedis连接做了一些优化，实现了`JedisProxy`类,这个类可以防止同步调用方法类获取多个Jedis连接，已提高redis利用率，并通过一个JedisProxyAop注入的方法不用再执行Jedis方法的同时获取和释放连接，具体实现原理如下：
 JedisProxy内部有一个成员：
+
 ~~~java
 
 	/**
