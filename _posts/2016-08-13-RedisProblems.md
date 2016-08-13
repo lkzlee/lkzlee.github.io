@@ -60,8 +60,7 @@ public class RedisSubListener extends JedisPubSub
 我们内部对于获取Jedis连接做了一些优化，实现了`JedisProxy`类,这个类可以防止同步调用方法类获取多个Jedis连接，已提高redis利用率，并通过一个JedisProxyAop注入的方法不用再执行Jedis方法的同时获取和释放连接，具体实现原理如下：
 JedisProxy内部有一个成员：
 ~~~java
-	/**使用threadLocal避免释放的时候传递jedis对象*/
-	private static ThreadLocal<Jedis> jedisLocal = new ThreadLocal<Jedis>();
+
 	/**
 	 * 获取jedis
 	 * @return
@@ -72,37 +71,37 @@ JedisProxy内部有一个成员：
 		try
 		{
 			/**去本线程中的jedis*/
-		jedis = jedisLocal.get();
-		if (null != jedis)
-		{
-			try
+			jedis = jedisLocal.get();
+			if (null != jedis)
 			{
-				// 取出来后执行ping检查下是否依然存活
-				if (jedis.isConnected())
+				try
 				{
-					return jedis;
+					// 取出来后执行ping检查下是否依然存活
+					if (jedis.isConnected())
+					{
+						return jedis;
+					}
+				}
+				catch (Exception e)
+				{
+					releaseBrokenJedis();
 				}
 			}
-			catch (Exception e)
+			if (null == redisSentinelPool)
 			{
-				releaseBrokenJedis();
+				this.initPool();
 			}
+			jedis = redisSentinelPool.getResource();
+			jedisLocal.set(jedis);// 设置本线程中的jedis
 		}
-		if (null == redisSentinelPool)
+		catch (Exception e)
 		{
-			this.initPool();
-		}
-		jedis = redisSentinelPool.getResource();
-		jedisLocal.set(jedis);// 设置本线程中的jedis
-	}
-	catch (Exception e)
-	{
-		releaseBrokenJedis();
-		if (null != jedisLocal.get())
-		{
-			jedisLocal.remove();
-		}
-		log.fatal("Could not get a resource from the pool, pls check the host and port settings", e);
+			releaseBrokenJedis();
+			if (null != jedisLocal.get())
+			{
+				jedisLocal.remove();
+			}
+			log.fatal("Could not get a resource from the pool, pls check the host and port settings", e);
 		}
 		return jedis;
 	}
@@ -121,7 +120,7 @@ JedisProxy内部有一个成员：
 		}
 		jedisLocal.remove();
 	}
-	
+
 	/**
 	 * 释放损坏资源
 	 */
