@@ -6,10 +6,19 @@ categories: git知识
 tags: 技术
 ---
 
+*****
+* TOC
+{:toc}
+*****
+
+# git安装下载
+
 下载git，地址：[https://git-scm.com/downloads](https://git-scm.com/downloads "git下载地址") 
 下载完成后安装。
 
 安装工具tortoisegit，地址:[https://tortoisegit.org/](https://tortoisegit.org/ "下载地址")
+
+# git配置
 
 安装完成两个工具后，在任意位置右键git bash here，如图：
 ![示例图片](/article_images/2016/git_bash_here.png)

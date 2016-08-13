@@ -5,8 +5,17 @@ date:   2016-08-13 12:26:00
 categories: Redis技术
 tags: 技术积累
 ---
-1.1 Redis使用过程中的问题
-问题1，redis发布订阅过程中，使用该连接进行其他处理，导致订阅失败。错误栈如下：
+*****
+* TOC
+{:toc}
+*****
+
+# 1.1 Redis使用过程中的问题
+
+## 问题1：JedisDataException: ERR only (P)SUBSCRIBE / (P)UNSUBSCRIBE / QUIT allowed in this context
+
+
+redis发布订阅过程中，使用该连接进行其他处理，导致订阅失败。错误栈如下：
 
 ~~~console
 redis.clients.jedis.exceptions.JedisDataException: ERR only (P)SUBSCRIBE / (P)UNSUBSCRIBE / QUIT allowed in this context
@@ -139,7 +148,7 @@ JedisProxy内部有一个成员：
 `redisSentinelPool`这个类基于`JedisSentinelPool`实现了Jedis连接池管理，但是各位有没有发现`handler.handler(message);`调用的这个方法是同步调用的，如果此方法处理的业务逻辑较多，比较又用到了redis，此时获取的redis连接和`JedisPubSub`【可以看看源码，有内置的client】连接是同一个的话，就会造成Redis上述的报错。
 
 
-问题2：
+## 问题2：Jedis返回`JedisConnectionException:Unknown reply: /`
 
 Jedis返回`JedisConnectionException:Unknown reply: /` 类似的错误，其本质可以通过源码看到Redis获取连接和使用是通过Pool来进行管理的，当时获取一个redis连接的时候`internalPool.borrowObject()`从Jedis实现的连接池中获取一个，用完释放`returnResourceObject(resource)`还给连接池，如果有一次调用Jedis链接获取缓存内容，返回过程中异常，而改连接流中的数据未处理为清空，那下次另一个线程获取到连接请求获取的消息时，上次信息会继续返回，此时返现连接请求的返回数据不一致就会报错。
 
