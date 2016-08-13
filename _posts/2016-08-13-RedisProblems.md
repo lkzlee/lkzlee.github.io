@@ -7,7 +7,8 @@ tags: 技术积累
 ---
 1.1 Redis使用过程中的问题
 问题1，redis发布订阅过程中，使用该连接进行其他处理，导致订阅失败。错误栈如下：
-~~~StackException
+
+~~~console
 redis.clients.jedis.exceptions.JedisDataException: ERR only (P)SUBSCRIBE / (P)UNSUBSCRIBE / QUIT allowed in this context
         at redis.clients.jedis.Protocol.processError(Protocol.java:66)
         at redis.clients.jedis.Protocol.process(Protocol.java:73)
@@ -57,84 +58,85 @@ public class RedisSubListener extends JedisPubSub
 }
 ~~~
 我们内部对于获取Jedis连接做了一些优化，实现了`JedisProxy`类,这个类可以防止同步调用方法类获取多个Jedis连接，已提高redis利用率，并通过一个JedisProxyAop注入的方法不用再执行Jedis方法的同时获取和释放连接，具体实现原理如下：
-~~~java
 JedisProxy内部有一个成员：
-/**使用threadLocal避免释放的时候传递jedis对象*/
-private static ThreadLocal<Jedis> jedisLocal = new ThreadLocal<Jedis>();
+~~~java
 
-/**
- * 获取jedis
- * @return
- */
-public Jedis getJedis()
-{
-	Jedis jedis = null;
-	try
+	/**使用threadLocal避免释放的时候传递jedis对象*/
+	private static ThreadLocal<Jedis> jedisLocal = new ThreadLocal<Jedis>();
+	/**
+	 * 获取jedis
+	 * @return
+	 */
+	public Jedis getJedis()
 	{
-		/**去本线程中的jedis*/
-	jedis = jedisLocal.get();
-	if (null != jedis)
-	{
+		Jedis jedis = null;
 		try
 		{
-			// 取出来后执行ping检查下是否依然存活
-			if (jedis.isConnected())
+			/**去本线程中的jedis*/
+		jedis = jedisLocal.get();
+		if (null != jedis)
+		{
+			try
 			{
-				return jedis;
+				// 取出来后执行ping检查下是否依然存活
+				if (jedis.isConnected())
+				{
+					return jedis;
+				}
+			}
+			catch (Exception e)
+			{
+				releaseBrokenJedis();
 			}
 		}
-		catch (Exception e)
+		if (null == redisSentinelPool)
 		{
-			releaseBrokenJedis();
+			this.initPool();
 		}
+		jedis = redisSentinelPool.getResource();
+		jedisLocal.set(jedis);// 设置本线程中的jedis
 	}
-	if (null == redisSentinelPool)
+	catch (Exception e)
 	{
-		this.initPool();
+		releaseBrokenJedis();
+		if (null != jedisLocal.get())
+		{
+			jedisLocal.remove();
+		}
+		log.fatal("Could not get a resource from the pool, pls check the host and port settings", e);
+		}
+		return jedis;
 	}
-	jedis = redisSentinelPool.getResource();
-	jedisLocal.set(jedis);// 设置本线程中的jedis
-}
-catch (Exception e)
-{
-	releaseBrokenJedis();
-	if (null != jedisLocal.get())
+	/**
+	 * 释放
+	 */
+	public void releaseJedis()
 	{
+		Jedis jedis = jedisLocal.get();
+		if (null != jedis && null != redisSentinelPool)
+		{
+			if (jedis.isConnected())
+			{
+				redisSentinelPool.returnResource(jedis);
+			}
+		}
 		jedisLocal.remove();
 	}
-	log.fatal("Could not get a resource from the pool, pls check the host and port settings", e);
-	}
-	return jedis;
-}
-/**
- * 释放
- */
-public void releaseJedis()
-{
-	Jedis jedis = jedisLocal.get();
-	if (null != jedis && null != redisSentinelPool)
+	
+	/**
+	 * 释放损坏资源
+	 */
+	public void releaseBrokenJedis()
 	{
-		if (jedis.isConnected())
+		Jedis jedis = jedisLocal.get();
+		if (null != jedis && null != redisSentinelPool)
 		{
-			redisSentinelPool.returnResource(jedis);
+			redisSentinelPool.returnBrokenResource(jedis);
 		}
+		jedisLocal.remove();
 	}
-	jedisLocal.remove();
-}
-
-/**
- * 释放损坏资源
- */
-public void releaseBrokenJedis()
-{
-	Jedis jedis = jedisLocal.get();
-	if (null != jedis && null != redisSentinelPool)
-	{
-		redisSentinelPool.returnBrokenResource(jedis);
-	}
-	jedisLocal.remove();
-}
 ~~~
+
 
 `redisSentinelPool`这个类基于`JedisSentinelPool`实现了Jedis连接池管理，但是各位有没有发现`handler.handler(message);`调用的这个方法是同步调用的，如果此方法处理的业务逻辑较多，比较又用到了redis，此时获取的redis连接和`JedisPubSub`【可以看看源码，有内置的client】连接是同一个的话，就会造成Redis上述的报错。
 
