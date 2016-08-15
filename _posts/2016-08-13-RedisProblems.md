@@ -66,11 +66,12 @@ public class RedisSubListener extends JedisPubSub
 	}
 }
 ~~~
-我们内部对于获取Jedis连接做了一些优化，实现了`JedisProxy`类,这个类可以防止同步调用方法类获取多个Jedis连接，已提高redis利用率，并通过一个JedisProxyAop注入的方法不用再执行Jedis方法的同时获取和释放连接，具体实现原理如下：
+我们公司内部对于获取Jedis连接做了一些优化，实现了`JedisProxy`类,这个类可以防止同步调用方法类获取多个Jedis连接，实现了redis连接的线程安全性，用`ThreadLocal`来提高redis利用率，并通过一个JedisProxyAop注入的方法不用再执行Jedis方法的同时获取和释放连接，具体实现原理如下：
 JedisProxy内部有一个成员：
 
 ~~~java
-
+	/**使用threadLocal避免释放的时候传递jedis对象*/
+	private static ThreadLocal<Jedis> jedisLocal = new ThreadLocal<Jedis>();
 	/**
 	 * 获取jedis
 	 * @return
@@ -146,12 +147,12 @@ JedisProxy内部有一个成员：
 ~~~
 
 
-`redisSentinelPool`这个类基于`JedisSentinelPool`实现了Jedis连接池管理，但是各位有没有发现`handler.handler(message);`调用的这个方法是同步调用的，如果此方法处理的业务逻辑较多，比较又用到了redis，此时获取的redis连接和`JedisPubSub`【可以看看源码，有内置的client】连接是同一个的话，就会造成Redis上述的报错。
+`redisSentinelPool`这个类基于`JedisSentinelPool`实现了Jedis连接池管理，但是各位有没有发现`handler.handler(message);`调用的这个方法是同步调用的，如果此方法处理的业务逻辑较多，比如又用到了redis，此时获取的redis连接和`JedisPubSub`【可以看看源码，有内置的client】连接是同一个的话，就会造成Redis上述的报错。
 
 
 ## 问题2：Jedis返回`JedisConnectionException:Unknown reply: /`
 
-Jedis返回`JedisConnectionException:Unknown reply: /` 类似的错误，其本质可以通过源码看到Redis获取连接和使用是通过Pool来进行管理的，当时获取一个redis连接的时候`internalPool.borrowObject()`从Jedis实现的连接池中获取一个，用完释放`returnResourceObject(resource)`还给连接池，如果有一次调用Jedis链接获取缓存内容，返回过程中异常，而改连接流中的数据未处理为清空，那下次另一个线程获取到连接请求获取的消息时，上次信息会继续返回，此时返现连接请求的返回数据不一致就会报错。
+Jedis返回`JedisConnectionException:Unknown reply: /` 类似的错误，其本质可以通过源码看到Redis获取连接和使用是通过Pool来进行管理的，当时获取一个redis连接的时候`internalPool.borrowObject()`从Jedis实现的连接池中获取一个，用完释放`returnResourceObject(resource)`还给连接池，如果有一次调用Jedis连接获取缓存内容，返回过程中异常，而该连接的数据流中的数据还存在，那下次另一个线程获取到连接请求获取的消息时，上次信息会继续从数据流中读取到并返回，此时返现连接请求数据与返回数据判断格式头不一致就会报错`JedisConnectionException:Unknown reply: /`。
 
 
 如下代码：
