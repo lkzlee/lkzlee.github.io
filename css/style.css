@@ -80,7 +80,7 @@ body                        { background: url(/images/body-bg.jpg) repeat 0 0; }
 .content-cnt .main-excerpt .date 
                             { font-style: italic; color: #888; }
 .content-cnt .main-excerpt-title 
-                            {font: 22px/1.5 Monaco,serif; text-transform: uppercase; text-shadow: 1px 1px #FFFFFF; }
+                            { font-size: 22px; font-family: Georgia; text-shadow: 1px 1px #FFFFFF; }
 .content-cnt .main-excerpt p 
                             { font-size:  14px; margin-bottom: 10px; font-family: Georgia; color: #484848; }
 .content-cnt .main-excerpt p a                    
