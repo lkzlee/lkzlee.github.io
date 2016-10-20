@@ -78,7 +78,7 @@ body                        { background: url(/images/body-bg.jpg) repeat 0 0; }
 .content-cnt .main          { width: 910px; height: auto; margin-right: 40px; float: left; }
 .content-cnt .main-excerpt  { margin-bottom: 20px; padding: 10px 0; border-bottom: 1px dashed #bebebe; }
 .content-cnt .main-excerpt .date 
-                            { font-style: italic; color: #888; }
+                            { font-style: normal; color: #888; }
 .content-cnt .main-excerpt-title 
                             { font-size: 22px; font-family: Georgia; text-shadow: 1px 1px #FFFFFF; }
 .content-cnt .main-excerpt p 
