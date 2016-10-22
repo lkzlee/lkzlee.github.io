@@ -28,11 +28,9 @@ Joda-Time is the de facto standard date and time library for Java prior to Java 
 
 其实我们用的是公司内部封装的工具类，这种工具类还是很容易封装的，没什么技术难度，但是很实用，一个时间处理工具类基本需要包含以下几种方法：
 
-	方便获取时间日期类
-
-	日期的转换和格式化
-
-	日期相关逻辑判断
+- 方便获取时间日期类
+- 日期的转换和格式化
+- 日期相关逻辑判断
 
 这些方法基本就足以完成常用日期类的用途开发。
 
@@ -68,7 +66,17 @@ json工具类目前是比较多的，最流行的莫过于json-lib库，总的�
 
 # 4. java对象与xml转换工具类库
 
+主流的xml解析工具有以下几种：dom、sax。衍生出来的工具库则由以下几种：
 
+- DOM：在现在的Java JDK里都自带了，在xml-apis.jar包里
+
+- SAX：[http://sourceforge.net/projects/sax/](http://sourceforge.net/projects/sax/)
+
+- JDOM：[http://jdom.org/downloads/index.html](http://jdom.org/downloads/index.html)
+
+- DOM4J：[http://sourceforge.net/projects/dom4j/](http://sourceforge.net/projects/dom4j/)
+
+- JAXB: [https://jaxb.java.net/guide/](https://jaxb.java.net/guide/)
 
 # 5. java对象与对象（属性copy）转换类库
 
