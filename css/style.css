@@ -74,13 +74,13 @@ body                        { background: url(/images/body-bg.jpg) repeat 0 0; }
 
 /** content **/
 .content                    { width: 100%; height: auto; min-height: 550px; }
-.content-cnt                { width: 900px; margin:  30px auto; height:  auto; }
-.content-cnt .main          { width: 610px; height: auto; margin-right: 40px; float: left; }
+.content-cnt                { width: 1200px; margin:  30px auto; height:  auto; }
+.content-cnt .main          { width: 910px; height: auto; margin-right: 40px; float: left; }
 .content-cnt .main-excerpt  { margin-bottom: 20px; padding: 10px 0; border-bottom: 1px dashed #bebebe; }
 .content-cnt .main-excerpt .date 
-                            { font-style: italic; color: #888; }
+                            { font-style: normal; color: #888; }
 .content-cnt .main-excerpt-title 
-                            { font-size: 26px; font-family: Georgia; text-transform: uppercase; text-shadow: 1px 1px #FFFFFF; }
+                            { font-size: 22px; font-family: Georgia; text-shadow: 1px 1px #FFFFFF; }
 .content-cnt .main-excerpt p 
                             { font-size:  14px; margin-bottom: 10px; font-family: Georgia; color: #484848; }
 .content-cnt .main-excerpt p a                    
@@ -167,7 +167,7 @@ body                        { background: url(/images/body-bg.jpg) repeat 0 0; }
 .entry h6                   { font-size: 13px; font-weight: 700; margin-bottom: 0.5em; color: #383535; line-height: 26px; }
 .entry > h2:first-child, .entry > h1:first-child, .entry > h1:first-child + h2 
                             { border: 0 none; }
-.entry p                    { font-size: 13px; line-height: 22px; margin-bottom: 15px; }
+.entry p                    { font-size: 16px; line-height: 28px; margin-bottom: 15px; }
 .entry > p:first-child      { margin: 0.8em 0; text-indent: 0; }
 .entry ul, .entry ol        { padding-bottom: 15px; margin-left: 24px; margin-top: 0.6em; }
 .entry ul li, .entry ol li  { font-size: 13px; color: #555; margin: 0.5em 0; }
@@ -192,8 +192,8 @@ body                        { background: url(/images/body-bg.jpg) repeat 0 0; }
 .entry strong               { font-weight: 700; font-family: "Times New Roman",Times,serif; }
 .entry a                    { border-bottom: 1px dotted #686868; color: #454545; }
 .entry a:hover              { background: #e8e8e8; border-bottom: 1px solid #777; text-decoration: none; }
-.entry pre                  { background-color: #303030; border-left: 5px solid #1f1f1f; border-top: 1px solid #1f1f1f; border-right: 1px solid #1f1f1f; border-bottom: 1px solid #1f1f1f; font: 12px/1.5 Monaco,serif; margin: 10px 0 10px 0px; overflow:  auto; color: #e8e8e8; border-radius: 3px 3px 3px 3px; }
-.entry .code                { margin: 0 3px; padding: 0 3px; background: #a0a0a0; font: 12px Monaco,serif; color: #f8f8f8; border-radius: 2px 2px; }
+.entry pre                  { background-color: #303030; border-left: 5px solid #1f1f1f; border-top: 1px solid #1f1f1f; border-right: 1px solid #1f1f1f; border-bottom: 1px solid #1f1f1f; font: 14px/1.5 Monaco,serif; margin: 10px 0 10px 0px; overflow:  auto; color: #e8e8e8; border-radius: 3px 3px 3px 3px; }
+.entry .code                { margin: 0 3px; padding: 0 3px; background: #a0a0a0; font: 14px/1.5 Monaco,serif; color: #f8f8f8; border-radius: 2px 2px; }
 
 /** entry special **/
 .entry .title               { margin-bottom: 10px; font-family: Georgia; padding: 0 0; font-size: 26px; font-weight: 400; line-height: 32px; color: #383535; text-align: center; text-shadow: 1px 1px #FFFFFF; text-transform: uppercase; }
