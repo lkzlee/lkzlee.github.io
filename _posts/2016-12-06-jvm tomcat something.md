@@ -14,8 +14,7 @@ tags: 技术积累
 # tomcat启动参数
 
 在公司经常看到jvm参数调优等一系列参数，于是乎看了这一份启动参数，对这些参数产生了兴趣，这些究竟能对tomcat做什么，使得jvm获得更好的性能。下面是一份启动样例：
-
-~~~shell
+<pre>
 /home/jdk1.8.0/bin/java
  -Djava.util.logging.config.file=/home/xxx/conf/logging.properties 
  -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager 
@@ -45,8 +44,7 @@ tags: 技术积累
  -Dcatalina.base=/home/xxx
  -Dcatalina.home=/home/tomcat8 
  -Djava.io.tmpdir=/home/project/xxx/temp org.apache.catalina.startup.Bootstrap start
-
-~~~
+</pre>
 
 # jvm启动参数调优
 
@@ -71,8 +69,8 @@ tags: 技术积累
 - -XX:+DisableExplicitGC 关闭System.gc()
 - -XX:+PrintGCTimeStamps 打印GC时间戳
 - -XX:+PrintGCDateStamps 
-- -XX:+PrintGCDetails  打印GC详细的信息，如：`2016-12-06T13:34:25.784+0800: 12208.859: [GC (Allocation Failure) 2016-12-06T13:34:25.784+0800: 12208.859: [ParNew: 316329K->1662K(353920K), 0.0139227 secs] 663846K->349184K(1009280K), 0.0141961 secs] [Times: user=0.04 sys=0.00, real=0.02 secs]` 
-- -verbose:gc 
+- -XX:+PrintGCDetails  打印GC详细的信息，如：2016-12-06T13:34:25.784+0800: 12208.859: [GC (Allocation Failure) 2016-12-06T13:34:25.784+0800: 12208.859: [ParNew: 316329K->1662K(353920K), 0.0139227 secs] 663846K->349184K(1009280K), 0.0141961 secs] [Times: user=0.04 sys=0.00, real=0.02 secs] 
+- -verbose:gc 表示输出虚拟机中GC的详细情况
 - -Xloggc:/home/xxx/logs/gc.log  gc输出日志文件
 - 
 # tomcat按项目启动
