@@ -12,7 +12,7 @@ highlighter: rouge # 高亮显示 取值有 'rouge', 'pygments'
 safe: false
 paginate:         5
 
-title:            流水殇-读书强身计划
+title:            凤翔壹天子-读书强身计划
 url:              http://www.lkzlee.github.com
 feed:             /atom.xml
 author:
@@ -29,7 +29,7 @@ description:      "借用别人的主题还不错"
 baseurl: "" 
 style: 			  /css/style.css
 style_highlighter:	/css/highlighter.css
-blogName: 		  静水流深
+blogName: 		  凤翔壹天子
 blogDesc: 		  总结，积累，分享，成长.
 
 gems: [jekyll-paginate]
