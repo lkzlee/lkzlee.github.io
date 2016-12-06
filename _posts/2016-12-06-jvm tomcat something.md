@@ -14,6 +14,7 @@ tags: 技术积累
 # tomcat启动参数
 
 在公司经常看到jvm参数调优等一系列参数，于是乎看了这一份启动参数，对这些参数产生了兴趣，这些究竟能对tomcat做什么，使得jvm获得更好的性能。下面是一份启动样例：
+
 ~~~shell
 /home/jdk1.8.0/bin/java
  -Djava.util.logging.config.file=/home/xxx/conf/logging.properties 
@@ -44,6 +45,7 @@ tags: 技术积累
  -Dcatalina.base=/home/xxx
  -Dcatalina.home=/home/tomcat8 
  -Djava.io.tmpdir=/home/project/xxx/temp org.apache.catalina.startup.Bootstrap start
+
 ~~~
 
 # jvm启动参数调优
