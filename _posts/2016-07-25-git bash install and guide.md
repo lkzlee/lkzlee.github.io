@@ -4,6 +4,7 @@ title: git 使用配置（windows版本）
 date:   2016-07-25 22:21:49
 categories: git知识
 tags: 技术
+description: 关于git初级入门级使用教程介绍
 ---
 
 *****

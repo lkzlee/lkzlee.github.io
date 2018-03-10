@@ -4,6 +4,7 @@ title: 技术大杂烩-java工具类总结
 date:   2016-10-21 14:38:00
 categories: java技术
 tags: 技术积累
+description: java基础库
 ---
 *****
 * TOC

@@ -4,6 +4,7 @@ title: JVM配置相关参数
 date:   2016-12-06 11:37:47
 categories: java技术
 tags: 技术积累
+description: 一篇jvm参数配置详解清单
 ---
 *****
 * TOC

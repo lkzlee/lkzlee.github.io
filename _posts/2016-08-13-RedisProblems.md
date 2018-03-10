@@ -4,6 +4,7 @@ title: Redis 使用中遇到的相关问题
 date:   2016-08-13 12:26:00
 categories: Redis技术
 tags: 技术积累
+description: Redis踩过的坑
 ---
 *****
 * TOC
