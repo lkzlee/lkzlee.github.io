@@ -7,7 +7,7 @@
 title: Charley.Lee的进阶之路
 subtitle: 身体和灵魂至少有一个在路上！
 description: 待物，待事，待人坦荡荡！寻求不断突破，不断成长！
-author: 李永超
+author: liyongchao
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
 language: zh-Hans
 date_format: '%Y-%m-%d'
@@ -107,7 +107,7 @@ canonical: true
 seo: true
 
 # If true, will add site-subtitle to index page, added in jekyll config.
-subtitle: Charley.Lee
+subtitle: 身体和灵魂至少有一个要在路上！
 index_with_subtitle: true
 
 # ---------------------------------------------------------------
