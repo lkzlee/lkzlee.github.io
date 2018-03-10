@@ -232,7 +232,7 @@ social_icons:
 
 # Sidebar Avatar
 # in directory: /assets/images/avatar.gif
-#avatar:
+avatar: /assets/images/avatar.jpeg
 
 
 # Table Of Contents in the Sidebar
@@ -284,7 +284,7 @@ links_title: Links
 links_layout: block
 links_layout: inline
 links:
-  Title: http://loveshisong.cn
+  loveshisong: http://loveshisong.cn
 
 
 # ---------------------------------------------------------------
@@ -316,13 +316,13 @@ post_meta:
 # Post wordcount display settings
 post_wordcount:
   item_text: true
-  wordcount: false
-  min2read: false
+  wordcount: true
+  min2read: true
   separated_meta: true
 
 # Wechat Subscriber
 wechat_subscriber:
-  enabled: true
+  enabled: false
   qcode: /uploads/wechat-qcode.jpeg
   description: CodersLife
 
