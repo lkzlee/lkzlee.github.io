@@ -1,3 +1,18 @@
+---
+layout: post
+title: Cassandra问题分析及总结
+date: 2019-10-14 08:40
+categories: java技术
+tags: 技术积累
+description: 本文章是由于作者碰到了一个奇葩问题，工作中组内有同事Cassandra的写性能有瓶颈问题，我不是很了解，自己搭建配置，进行学习，一起分析找出问题所在。
+
+---
+*****
+* TOC
+{:toc}
+*****
+
+
 # Cassandra问题分析及总结
 
 这边文章对Cassandra的此处安装配置涉及不多，只给出了相关链接，主要列举了核心参数调优和问题记录。
