@@ -19,13 +19,17 @@ description: 本文章是由于作者碰到了一个奇葩问题，工作中组�
 
 ## 存在问题
 
-Cassandra目前存在性能瓶颈，写性能上不去，在写入性能达18MB/s时已经达到瓶颈，速度上不去。
+一开始以为：Cassandra目前存在性能瓶颈，写性能上不去，在写入性能达18MB/s时已经达到瓶颈，速度上不去。
+
+最终是业务本身的问题，查询了官方文档，直接重新换方案了。不能用Cassandra做二进制大文件存储，这些从侧面验证sql和no-sql数据库是针对不同数据的业务场景做处理的，而不是用来存储大文件的，如果需要存储文件应该使用业内成熟的分布式存储系统或叫对象存储服务（Object Storage Service，简称OSS）。
 
 报错：com.datastax.driver.core.exceptions.WriteTimeoutException:Cassandra timeout during write query at consistency LOCAL_ONE(1 replica were required but only 0 acknowledged the write)
 
 ## 目标
 
-优化Cassandra，使得Cassandra写性能达到GB级别/s，排查出问题。
+*优化Cassandra，使得Cassandra写性能达到GB级别/s，排查出问题。*
+
+（后续发现问题不是这样的，业务不涉及高性能写入，而是是为了解决单个大文件二进制写入Cassandra，需要换存储方案。）
 
 ## 问题检索
 
@@ -88,6 +92,22 @@ commitlog_sync commitlog同步方式：定期或者batch批量两种策略。
 ## 存在的问题
 
 业务信息不是很充足，最好能够有权限进入Cassandra服务，然后从系统各个维度进行分析，更加深入地理解业务场景，继续检索和排查对应的问题。
+
+
+
+## 最终解决
+
+最终发现是业务场景使用的问题，我们重新换了一套方案来实现。
+
+[Cassandra blob type](https://docs.datastax.com/en/archived/cql/3.3/cql/cql_reference/blob_r.html) 文中有这样一段话：
+
+```reStructuredText
+Blob type
+The Cassandra blob data type represents a constant hexadecimal number defined as 0[xX](hex)+ where hex is a hexadecimal character, such as [0-9a-fA-F]. For example, 0xcafe. The maximum theoretical size for a blob is 2 GB. The practical limit on blob size, however, is less than 1 MB. A blob type is suitable for storing a small image or short string.
+
+```
+
+文中说的很清楚，blob类型不能用来存大文件的。
 
 
 
