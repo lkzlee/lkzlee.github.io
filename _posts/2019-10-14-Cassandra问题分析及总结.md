@@ -23,7 +23,11 @@ description: 本文章是由于作者碰到了一个奇葩问题，工作中组�
 
 最终是业务本身的问题，查询了官方文档，直接重新换方案了。不能用Cassandra做二进制大文件存储，这些从侧面验证sql和no-sql数据库是针对不同数据的业务场景做处理的，而不是用来存储大文件的，如果需要存储文件应该使用业内成熟的分布式存储系统或叫对象存储服务（Object Storage Service，简称OSS）。
 
-报错：com.datastax.driver.core.exceptions.WriteTimeoutException:Cassandra timeout during write query at consistency LOCAL_ONE(1 replica were required but only 0 acknowledged the write)
+报错：
+
+```java
+com.datastax.driver.core.exceptions.WriteTimeoutException:Cassandra timeout during write query at consistency LOCAL_ONE(1 replica were required but only 0 acknowledged the write)
+```
 
 ## 目标
 
