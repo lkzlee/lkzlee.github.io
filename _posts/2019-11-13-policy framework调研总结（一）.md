@@ -38,13 +38,13 @@ Policy组件的功能。引用官方文档的一句话：`One of the most import
 
 它的架构如下：
 
-![Policy Framework架构图](/post_img/PFHighestLevel.svg)
+![Policy Framework架构图](/post_img/2019/PFHighestLevel.svg)
 
 简单来说分为四部分：Policy 开发，Policy管理，Policy执行，底层Policy DB存储。后续会详细介绍ONAP的整个框架。
 
 ### PolicyFramework详细架构：
 
-![Policy Framework详细架构图](/post_img/PFDesignAndAdmin.svg)
+![Policy Framework详细架构图](/post_img/2019/PFDesignAndAdmin.svg)
 
 
 
@@ -54,7 +54,7 @@ Policy组件的功能。引用官方文档的一句话：`One of the most import
 
 **PolicyExecution执行**
 
-![Policy在K8s环境中执行器架构图](/post_img/PolicyExecution.svg)
+![Policy在K8s环境中执行器架构图](/post_img/2019/PolicyExecution.svg)
 
 **PolicyExecution** 我称之为Policy执行器，它提供三类API：
 
@@ -88,13 +88,13 @@ ACPE ：Advanced Customer Premises Service
 
 ### Policy Framework 对象模型
 
-![Policy Framework对象关系图](/post_img/PolicyClassStructure.svg)
+![Policy Framework对象关系图](/post_img/2019/PolicyClassStructure.svg)
 
 从图中可以看出，Policy实现类型有三种：XACML、Drool、Apex策略工具实现类（PDP Type指的也是这三类）。
 
 ### Policy Framework UML 类图
 
-![Policy Framework类图](/post_img/PolicyDesignTimeComponents.svg)
+![Policy Framework类图](/post_img/2019/PolicyDesignTimeComponents.svg)
 
 从上图可以看到PolicyCreator--》PolicyType/Policy都是有一对一的关系，底下都有三种类型的各自实现类，详细描述了类和类之间的关系。
 
@@ -104,13 +104,13 @@ ACPE ：Advanced Customer Premises Service
 
 ### Policy Type Design设计开发
 
-![策略类型设计流程图](/post_img/PolicyTypeDesign.svg)
+![策略类型设计流程图](/post_img/2019/PolicyTypeDesign.svg)
 
 一般Policy Framework中先需要设计开发策略类型，然后通过策略类型生成时间运行的策略，具体的一个策略类型对应于一个策略实现类（比如XACML、Drool、APEX）。
 
 ### Policy Design策略设计
 
-![Policy Design策略设计](/post_img/PolicyDesign.svg)
+![Policy Design策略设计](/post_img/2019/PolicyDesign.svg)
 
 策略设计一般是利用PolicyDevelopment组件从具体的Policy Type类型中创建而来。
 
@@ -120,13 +120,13 @@ ACPE ：Advanced Customer Premises Service
 
 
 
-![模型驱动策略设计](/post_img/ModelDrivenPolicyDesign.svg)
+![模型驱动策略设计](/post_img/2019/ModelDrivenPolicyDesign.svg)
 
 
 
 ### Scripted Model Driven Policy Design设计
 
-![脚本化模型驱动策略设计](/post_img/ScriptedPolicyDesign.svg)
+![脚本化模型驱动策略设计](/post_img/2019/ScriptedPolicyDesign.svg)
 
 
 
@@ -149,30 +149,30 @@ ACPE ：Advanced Customer Premises Service
 
 #### 运行时相关概念
 
-![PF运行时关系图](/post_img/RuntimeRelationships.svg)
+![PF运行时关系图](/post_img/2019/RuntimeRelationships.svg)
 
 从上图可以看到PDPSubGroup、PDPService、PolicySet、PDP、PolicyImpl间的调用关系及组件生命周期被谁所管理。
 
 #### Policy Framework DB设计
 
-![PF database设计](/post_img/PolicyDatabase.svg)
+![PF database设计](/post_img/2019/PolicyDatabase.svg)
 
 ### Policy Framework各组件启停时序图
 
 
 #### PAP启停时序图
 
-![PAP启停](/post_img/PAPStartStop.svg)
+![PAP启停](/post_img/2019/PAPStartStop.svg)
 
 #### PDP启停时序图
 
-![PDP启停](/post_img/PDPStartStop.svg)
+![PDP启停](/post_img/2019/PDPStartStop.svg)
 
 ## Policy Execution执行
 
 ### Policy Execution时序图
 
-![Policy Execution时序图](/post_img/PolicyExecutionFlow.svg)
+![Policy Execution时序图](/post_img/2019/PolicyExecutionFlow.svg)
 
 ### Policy Execution Lifecycle模式
 
@@ -189,11 +189,11 @@ ACPE ：Advanced Customer Premises Service
 
 #### Load/Update Policy in PDP
 
-![load/update Policy时序图](/post_img/DownloadPoliciesToPDP.svg)
+![load/update Policy时序图](/post_img/2019/DownloadPoliciesToPDP.svg)
 
 #### Policy Rollout
 
-![Policy卸载](/post_img/PolicyRollout.svg)
+![Policy卸载](/post_img/2019/PolicyRollout.svg)
 
 ## 参考文档
 
