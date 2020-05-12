@@ -111,43 +111,43 @@ PDP-D组件的日志：
 
 4. 接下来PDP-D会向A&AAI查询，以后去从开始指定的VNF信息，下图展示了这个流程（日志截图）：
 
-![/post_img/2020/Tut_vFW_aai_get.jfif](Tut_vFW_aai_get.jfif)
+![Tut_vFW_aai_get.jfif](/post_img/2020/Tut_vFW_aai_get.jfif)
 
 
 
 5. 对于vFW用例，起始消息中报告的源实体可能不是APPC操作对其执行操作的目标实体。为了确定真正的目标实体，将执行一个名为A&AI的查询。请求显示在network.log日志中。
 
-![/post_img/2020/Tut_vFW_aai_named_query_request.jfif](Tut_vFW_aai_named_query_request.jfif)
+![Tut_vFW_aai_named_query_request.jfif](/post_img/2020/Tut_vFW_aai_named_query_request.jfif)
 
 返回结果也会打印到日志中，如图：
 
-![/post_img/2020/Tut_vFW_aai_named_query_response.jfif](Tut_vFW_aai_named_query_response.jfif)
+![Tut_vFW_aai_named_query_response.jfif](/post_img/2020/Tut_vFW_aai_named_query_response.jfif)
 
 6.一旦找到目标实体，PDP-D最终会确定是否应允许此操作，将发送一系列操作通知以启动Guard查询、获取许可或拒绝并开始操作。
 
 开始查询操作
 
-![/post_img/2020/Tut_vFW_policy_guard_start.jfif](Tut_vFW_policy_guard_start.jfif)
+![Tut_vFW_policy_guard_start.jfif](/post_img/2020/Tut_vFW_policy_guard_start.jfif)
 
 查询结果
 
 
 
-![/post_img/2020/Tut_vFW_policy_guard_result.jfif](Tut_vFW_policy_guard_result.jfif)
+![Tut_vFW_policy_guard_result.jfif](/post_img/2020/Tut_vFW_policy_guard_result.jfif)
 
 操作开始
 
-![/post_img/2020/Tut_vFW_policy_operation_start.jfif](Tut_vFW_policy_operation_start.jfif)
+![Tut_vFW_policy_operation_start.jfif](/post_img/2020/Tut_vFW_policy_operation_start.jfif)
 
 
 
 7. 在操作开始时，会发送一个appc操作，如下图：
 
-![/post_img/2020/Tut_vFW_appc_request.jfif](Tut_vFW_appc_request.jfif)
+![2020/Tut_vFW_appc_request.jfif](/post_img/Tut_vFW_appc_request.jfif)
 
 8.APPC的请求使用APPC-CL topic事件作为 响应结果（这个是模拟结果，下面告诉模拟方法）
 
-![/post_img/2020/Tut_vFW_simulated_appc_response.jfif](Tut_vFW_simulated_appc_response.jfif)
+![Tut_vFW_simulated_appc_response.jfif](/post_img/2020/Tut_vFW_simulated_appc_response.jfif)
 
 上面结果是模拟的事件，发送下面api即可模拟这个响应请求：
 
@@ -159,7 +159,7 @@ curl -k --silent --user @1b3rt:31nst31n --header "Content-Type: text/plain" --da
 
    
 
-![/post_img/2020/Tut_vFW_policy_operation_success.jfif](Tut_vFW_policy_operation_success.jfif)
+![Tut_vFW_policy_operation_success.jfif](/post_img/2020/Tut_vFW_policy_operation_success.jfif)
 
 10. 最终vFW测试在Policy决策验证结束。处理完成后Telemetry  Param对象又只剩一个，说明策略可重入的，之前的vFw准备工作被清除，可以重新开始操作测试。
 
