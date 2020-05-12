@@ -2,7 +2,7 @@
 layout: post
 title:  ONAP架构中Policy Framework详解（一）
 date: 2019-11-13 11:09
-categories: java技术
+categories: ONAP
 tags: 技术积累
 description: ONAP社区看Policy相关文档自己写的总结，加深自我的理解，为国内社区对ONAP的Policy这块提供一定的技术积累和文档资料。
 ---
