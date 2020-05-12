@@ -5,11 +5,14 @@ date: 2020-01-03 11:09
 categories: ONAP
 tags: 技术积累
 description: ONAP社区看Policy相关文档自己写的总结，Policy Framework以下简称为PF，以下文章主要讲解PF的软件架构。
+
 ---
+
 *****
 * TOC
 {:toc}
 *****
+
 
 # Policy Framework软件架构（二）
 

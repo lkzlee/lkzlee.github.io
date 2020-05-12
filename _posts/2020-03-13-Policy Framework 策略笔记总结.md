@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title:  Policy Framework策略笔记总结
@@ -6,7 +5,9 @@ date: 2020-03-13 11:09
 categories: ONAP
 tags: 技术积累
 description: ONAP社区看Policy相关文档自己写的总结，主要总结下PF中的策略类型。
+
 ---
+
 *****
 * TOC
 {:toc}

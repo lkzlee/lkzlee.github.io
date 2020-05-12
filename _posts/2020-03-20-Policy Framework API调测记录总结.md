@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title:  Policy Framework Api调测记录总结
@@ -6,7 +5,14 @@ date: 2020-03-20 11:09
 categories: ONAP
 tags: 技术积累
 description: 本文章主要接收ONAP整个构建观察中对应Policy组件的调测，保证各个组件正常，调用和查看各个Policy组件api，方便后续Policy调试部署。
+
 ---
+
+*****
+* TOC
+{:toc}
+*****
+
 
 # Policy Framework Api调测记录总结
 
