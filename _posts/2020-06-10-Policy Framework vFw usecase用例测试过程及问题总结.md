@@ -399,7 +399,11 @@ curl -vvv --silent -k --user 'healthcheck:zb!XztG34' -X GET "https://10.105.209.
 }
 ~~~
 
+更改PASSIVE为ACTIVE状态：
 
+~~~shell
+curl -vvv --silent -k --user 'healthcheck:zb!XztG34' -X PUT "https://10.105.209.215:6969/policy/pap/v1/pdps/groups/defaultGroup?state=ACTIVE" -H "Accept: application/json" -H "Content-Type: application/json"
+~~~
 
 
 
